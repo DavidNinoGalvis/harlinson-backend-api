@@ -1,18 +1,20 @@
 import { Module } from '@nestjs/common';
-import { ApiController } from './api.controller';
-import { ApiService } from './api.service';
-import { UsersModule } from './users/users/users.module';
-import { AuthModule } from './auth/auth/auth.module';
-import { ProductsModule } from './products/products/products.module';
-import { OrdersModule } from './orders/orders/orders.module';
-import { EventsModule } from './events/events/events.module';
-import { PostsModule } from './posts/posts/posts.module';
-import { CommonModule } from './common/common/common.module';
-import { ConfigModule } from './config/config/config.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+
+// importa aquí tus módulos reales
+import { UsersModule } from './users/users.module';
+// import { AuthModule } from './auth/auth.module';
+// import { ProductsModule } from './products/products.module';
+// import { OrdersModule } from './orders/orders.module';
+// import { EventsModule } from './events/events.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, ProductsModule, OrdersModule, EventsModule, PostsModule, CommonModule, ConfigModule],
-  controllers: [ApiController],
-  providers: [ApiService],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGO_URI),
+    UsersModule,
+    // AuthModule, ProductsModule, OrdersModule, EventsModule ...
+  ],
 })
-export class ApiModule {}
+export class AppModule {}
