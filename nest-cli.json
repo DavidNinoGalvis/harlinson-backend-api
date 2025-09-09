@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/harlinson-api/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/harlinson-api/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/harlinson-api",
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api/tsconfig.app.json"
+      }
+    },
+    "harlinson-api": {
+      "type": "application",
+      "root": "apps/harlinson-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/harlinson-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/harlinson-api/tsconfig.app.json"
+      }
+    }
+  }
+}
